@@ -1,0 +1,614 @@
+body {
+    padding-top: 70px;
+    overflow-x: hidden;
+}
+footer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.navbar-wrapper {
+    max-width: 100%;
+}
+a.news,
+a.news:link,
+a.news:active,
+a.news:visited,
+a.news:hover {
+    color: black;
+    text-decoration: none;
+}
+a.nolinkstyle,
+a.nolinkstyle:link,
+a.nolinkstyle:active,
+a.nolinkstyle:visited,
+a.nolinkstyle:hover {
+    color: black;
+    text-decoration: none;
+}
+@media screen and (max-width: 1024px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+    }
+    .row-offcanvas-left .sidebar-offcanvas {
+        left: -50%;
+    }
+    .row-offcanvas-left.active {
+        left: 50%;
+    }
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 45%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+    }
+    .row-offcanvas-left .sidebar-offcanvas {
+        left: -70%;
+    }
+    .row-offcanvas-left.active {
+        left: 70%;
+    }
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 65%;
+    }
+}
+.no-margin {
+    margin: 0;
+}
+.no-padding-bottom {
+    padding-bottom: 0px;
+}
+.frontpage-header {
+    padding-bottom: 3px;
+}
+li.active {
+    background-color: white;
+}
+@media screen and (max-width: 500px) {
+    .hiddenPhoneLandscape {
+        display: block;
+    }
+}
+@media screen and (min-width: 500px) {
+    .hiddenPhoneLandscape {
+        display: none;
+    }
+}
+.descriptiontext {
+    text-transform: uppercase;
+    color: #999999;
+    letter-spacing: 1px;
+}
+.noImage {
+    width: 105px;
+    height: 105px;
+    background-image: url(http://static.hltv.org/images/dreamteam/player_photo.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.auto-resizable-iframe {
+    max-width: 550px;
+    margin: 0px auto;
+}
+.auto-resizable-iframe>div {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0px;
+}
+.auto-resizable-iframe iframe {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+.zzReplyCon {
+    margin: 0 0 0 5px;
+    padding: 5px 0 0 5px;
+    border-left: 1px solid rgb(205, 205, 205);
+    background: url('http://www.hltv.org/images/L.gif');
+    background-repeat: no-repeat;
+    background-position: -1px 0px;
+}
+.zzLastReplyCon {
+    margin: 0 0 0 5px;
+    padding: 5px 0 0 6px;
+    background: url('http://www.hltv.org/images/L.gif');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    _display: inline-block;
+}
+.header {
+    background-image: url(http://static.hltv.org/images/forum_replyHeader.jpg);
+    _display: inline-block;
+    position: relative;
+    z-index: 100000;
+}
+.header2 {
+    background-image: url(http://static.hltv.org/images/forum_replyHeaderEnd.jpg);
+    background-repeat: no-repeat;
+    background-position: top right;
+    font-weight: bold;
+    height: 13px;
+    padding: 4px 4px 3px 4px;
+    text-align: left;
+}
+.header img {
+    margin: 0 0 0 5px;
+    vertical-align: bottom;
+}
+.textbox {
+    border: 1px solid rgb(205, 205, 205);
+    background-color: white;
+    padding: 5px 5px 0 5px;
+    font-family: arial;
+    font-size: 12px;
+    overflow: auto;
+    _display: inline-block;
+}
+.timestamp {
+    margin: 5px 0 0 0;
+    text-align: right;
+    border-top: 1px solid rgb(205, 205, 205);
+    color: gray;
+    font-size: 11px;
+}
+.nb {
+    font-weight: normal;
+    color: #225783;
+}
+.calendarCell {
+    height: 20px;
+    width: 30px;
+    float: left;
+    clear: none;
+    text-align: center;
+    padding-top: 10px;
+    border: 1px solid #225783;
+    margin: 0 1px 1px 0;
+    background-image: url('http://static.hltv.org/images/gradiantDarkBack.gif');
+}
+.calendarSkipCell {
+    height: 20px;
+    width: 30px;
+    float: left;
+    clear: none;
+    text-align: center;
+    padding-top: 10px;
+    border: 1px solid #225783;
+    margin: 0 1px 1px 0;
+    background-image: url('http://static.hltv.org/images/gradiantDarkBack.gif');
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+.calendarHeaderCell {
+    height: 22px;
+    width: 33px;
+    float: left;
+    clear: none;
+    color: rgb(0, 0, 0);
+    padding-top: 8px;
+    text-align: center;
+}
+.headerBigCell {
+    float: left;
+    clear: none;
+    height: 25px;
+    border: 1px solid #225783;
+    margin: 0 1px 1px 0;
+    background-image: url('http://static.hltv.org/images/gradiantDarkBack.gif');
+}
+.newsContentBox {
+    font-family: verdana;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 303px;
+    background-image: url('http://static.hltv.org/images/inside_teh_news_top.gif');
+}
+.newsContentBoxTitle {
+    text-align: right;
+    color: white;
+    position: relative;
+    left: -10px;
+    top: 7px;
+}
+.newsContentBoxTeamName {
+    text-align: left;
+    color: black;
+    position: relative;
+    left: 10px;
+    top: -5px;
+}
+.newsContentBoxPadding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.newsContentBoxContent {
+    border-bottom: 1px dashed #999999;
+}
+.newsContentBoxPlayerName {
+    float: left;
+    color: #0066CC;
+}
+.newsContentBoxImage {
+    vertical-align: -3px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+}
+.newsContentBoxFormerTeams {
+    float: right;
+    margin-top: 2px;
+}
+.newsContentBoxResultWon {
+    float: right;
+    margin-top: 2px;
+    color: green;
+}
+.newsContentBoxResultLost {
+    float: right;
+    margin-top: 2px;
+    color: red;
+}
+.newsContentBoxResultTie {
+    float: right;
+    margin-top: 2px;
+    color: blue;
+}
+.newsContentBoxBottom {
+    margin-left: auto;
+    margin-right: auto;
+    background-repeat: no-repeat;
+    height: 10px;
+    clear: both;
+    width: 303px;
+    background-image: url('http://static.hltv.org/images/inside_teh_news_bottom.gif');
+}
+.flagFix {
+    vertical-align: -20%;
+}
+.covMainBoxHeader {
+    height: 8px;
+    border-top: 1px solid rgb(189, 189, 189);
+}
+.covMainBoxFooter {
+    height: 7px;
+    border-bottom: 1px solid rgb(189, 189, 189);
+}
+.covMainBoxContent {
+    margin-top: -1px;
+    width: 601px;
+    background-color: #F7F7F7;
+    border-left: 1px solid rgb(189, 189, 189);
+    border-right: 1px solid rgb(189, 189, 189);
+    padding-left: 5px;
+}
+.covResultBoxContent {
+    margin-top: -1px;
+    width: 606px;
+    background-color: #F7F7F7;
+    border-left: 1px solid rgb(189, 189, 189);
+    border-right: 1px solid rgb(189, 189, 189);
+}
+.covSideBox {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #E6E5E5;
+    width: 165px;
+}
+.covSideBoxHeader {
+    height: 8px;
+    border-top: 1px solid #E6E5E5;
+}
+.covSideBoxFooter {
+    height: 6px;
+    border-bottom: 1px solid #E6E5E5;
+}
+.covSideBoxContent {
+    margin-top: -1px;
+    margin-left: -6px;
+    width: 172px;
+    padding-left: 5px;
+    background-color: #E6E5E5;
+    border-left: 1px solid #E6E5E5;
+    border-right: 1px solid #E6E5E5;
+}
+.covLeftCorner {
+    position: relative;
+    float: left;
+    left: -4px;
+    top: -1px;
+}
+.covRightCorner {
+    position: relative;
+    float: right;
+    right: -6px;
+    top: -1px;
+}
+.covSmallHeadline {
+    color: #0269D2;
+    font-weight: bold;
+}
+.covDtBox {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #E6E5E5;
+    width: 581px;
+}
+.covDtBoxHeader {
+    height: 8px;
+    border-top: 1px solid #E6E5E5;
+}
+.covDtBoxFooter {
+    height: 6px;
+    border-bottom: 1px solid #E6E5E5;
+}
+.covDtBoxContent {
+    margin-top: -1px;
+    margin-left: -6px;
+    width: 586px;
+    padding-left: 5px;
+    background-color: #E6E5E5;
+    border-left: 1px solid #E6E5E5;
+    border-right: 1px solid #E6E5E5;
+}
+.boxLeftBottomCorner {
+    background-image: url(http://static.hltv.org/images/bottom_left_corner.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 100%;
+    height: 8px;
+    float: left;
+}
+.boxRightBottomCorner {
+    background-image: url(http://static.hltv.org/images/bottom_right_corner.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    width: 100%;
+    height: 8px;
+    float: left;
+}
+.boxLeftTopCorner {
+    background-image: url(http://static.hltv.org/images/top_left_corner.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    width: 100%;
+    height: 8px;
+    float: left;
+}
+.boxRightTopCorner {
+    background-image: url(http://static.hltv.org/images/top_right_corner.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    width: 100%;
+    height: 8px;
+    float: left;
+}
+.boxMainContent {
+    margin-top: 7px;
+    background-color: #F7F7F7;
+    border-left: 1px solid rgb(189, 189, 189);
+    border-right: 1px solid rgb(189, 189, 189);
+    left: -1px;
+    right: -10px;
+}
+.boxTopHeader {
+    border-top: 1px solid rgb(189, 189, 189);
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.boxBottomFooter {
+    border-bottom: 1px solid rgb(189, 189, 189);
+    margin-left: 8px;
+    margin-right: 8px;
+    height: 8px;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+.resultWinner {
+    color: green;
+}
+.resultLoser {
+    color: red;
+}
+.resultDraw {
+    color: blue;
+}
+.matchNotificationBox {
+    margin-top: 5px;
+    border-width: 1px;
+    height: 25px;
+    width: 25px;
+    max-width: 25px;
+    margin-right: 5px;
+    border-color: rgb(189, 189, 189);
+    border-style: solid;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+    background-image: -webkit-linear-gradient(90deg, rgb(104, 118, 132) 0%, rgb(69, 84, 97) 100%);
+    background-image: -ms-linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+    display: inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+.matchNotificationBoxDisabled {
+    margin-top: 5px;
+    border-width: 1px;
+    height: 25px;
+    width: 25px;
+    max-width: 25px;
+    margin-right: 5px;
+    border-color: rgb(189, 189, 189);
+    border-style: solid;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    !important;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+    background-image: -webkit-linear-gradient(90deg, rgb(30, 80, 123) 0%, rgb(45, 108, 162) 100%);
+    background-image: -ms-linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+    display: inline-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+}
+.matchNotificationBoxDisabled a {
+    color: white!important;
+}
+.matchNotificationBox a {
+    color: white!important;
+}
+.covGroupBox {
+    background-color: #F7F7F7;
+    width: 288px;
+    margin-left: 4px;
+}
+.covGroupBoxContent {
+    margin-top: -1px;
+    width: 298px;
+    background-color: #F7F7F7;
+    border-left: 1px solid rgb(189, 189, 189);
+    border-right: 1px solid rgb(189, 189, 189);
+}
+.covGroupHeaderBox {
+    background-color: #E6E5E5;
+    width: 280px;
+    margin-left: 9px;
+}
+.covGroupHeaderBoxContent {
+    margin-top: -1px;
+    margin-left: 3px;
+    width: 285px;
+    padding-left: 5px;
+    background-color: #E6E5E5;
+    border-left: 1px solid #E6E5E5;
+    border-right: 1px solid #E6E5E5;
+    text-align: center;
+}
+.tab_con {
+    font-family: Verdana;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 5px 0;
+}
+.tab_con .tab_top1 {
+    height: 9px;
+    background-image: url(http://static.hltv.org/images/tab_white_right_top2.gif);
+    background-repeat: no-repeat;
+    background-position: top right;
+    position: relative;
+}
+.tab_con .tab_top2 {
+    height: 9px;
+    background-image: url(http://static.hltv.org/images/tab_white_left_top2.gif);
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+.tab_con .tab_top3 {
+    height: 9px;
+    margin: 0 9px;
+    background-image: url(http://static.hltv.org/images/tab_white_middle_top.gif);
+    background-repeat: repeat-x;
+    background-position: top left;
+}
+.tab_con .tab_groups {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    padding: 0 0 9px 0;
+}
+.tab_con .negativeHeight {
+    margin: -15px 0 0 0;
+}
+.tab_con .tab_group1 {
+    background-image: url(http://static.hltv.org/images/tab_white_right.gif);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    position: relative;
+    margin: 0 0 -9px 0;
+}
+.tab_con .tab_group2 {
+    background-image: url(http://static.hltv.org/images/tab_white_left.gif);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+.tab_con .tab_group3 {
+    margin: 0 9px;
+    padding: 20px 0 0 0;
+    background-image: url(http://static.hltv.org/images/tab_white_middle.gif);
+    background-repeat: repeat-x;
+    background-position: bottom left;
+}
+.tab_con .tab_group1 .tab_content {
+    position: relative;
+    top: -7px;
+}
+.tab_con .tab_content a.tab_selected,
+.tab_con .tab_content a.tab_selected:link,
+.tab_con .tab_content a.tab_selected:visited,
+.tab_con .tab_content a.tab_selected:hover,
+.tab_con .tab_content a.tab_selected:active {
+    color: #225783;
+    margin: 0 3px;
+}
+.tab_con .tab_content a.tab_unselected,
+.tab_con .tab_content a.tab_unselected:link,
+.tab_con .tab_content a.tab_unselected:visited,
+.tab_con .tab_content a.tab_unselected:hover,
+.tab_con .tab_content a.tab_unselected:active {
+    color: #0269D2;
+    margin: 0 3px;
+}
+.tab_con .tab_content span.tab_selected {
+    color: #225783;
+    margin: 0 3px;
+}
+.tab_con .tab_content span.tab_unselected {
+    color: gray;
+    margin: 0 3px;
+}
+.tab_con .tab_content span.tab_spacer {
+    color: gray;
+}
