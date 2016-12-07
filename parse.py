@@ -1,22 +1,21 @@
 from bs4 import BeautifulSoup as btf
-import config,requests
+import config
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine.url import URL
-from database import match
+import requests
+from database import match, parseTwitchs,tohttp
+from sqlalchemy.orm import sessionmaker
 
 
 engine = create_engine(URL(**config.DATABASE))
 url = "http://www.hltv.org/matches/"
-pcheaders={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1'}
-mheaders={'User-Agent': 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}
-req = requests.get(url,headers=pcheaders)
-soup = btf(req.text,"lxml")
+hh = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1'}
+read = requests.get(url, headers=hh)
+soup = btf(read.text,"lxml")
 matches = soup.find_all("div",class_="matchListRow")
-Base = declarative_base()
 Session = sessionmaker(bind=engine)
 session = Session()
+
 
 
 for team in matches:
@@ -36,10 +35,10 @@ for team in matches:
         if check:
             pass
         else:
-            mat = match(id,a,aLogo,b,bLogo,e,date,c,event,link,status='None')
+            mat = match(id,a,aLogo,b,bLogo,e,date,c,link,status='None')
             session.add(mat)
+            session.commit()
+            parseTwitchs(id,tohttp(link))
     except:
         pass
-
-session.commit()
 
