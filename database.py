@@ -1,14 +1,12 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import String,Column,Integer,DateTime,create_engine,ForeignKey
+from sqlalchemy import String,Column,Integer,DateTime,create_engine,ForeignKey, Boolean
 from dateutil.parser import parse
 from pytz import timezone
 import config
 from sqlalchemy.engine.url import URL
 from bs4 import BeautifulSoup as btf
 from sqlalchemy.orm import sessionmaker,relationship
-import requests
-
-
+import requests, bcrypt
 
 mheaders = {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}
 engine = create_engine(URL(**config.DATABASE))
@@ -35,10 +33,6 @@ def parseEvent(link):
     event = soup.find_all('span', class_='label-primary label')[1]
     return event.text
 
-
-
-
-
 class match(Base):
     __tablename__ = 'cs'
     id = Column(Integer,primary_key=True)
@@ -52,7 +46,7 @@ class match(Base):
     event = Column(String(100))
     status = Column(String(20))
     score = Column(String(10))
-    twitchvods = relationship('Twitchvod',backref='match')
+    twitchvods = relationship('Twitchvod',backref='match', lazy='subquery')
     def __init__(self,id, teamA, ALogo, teamB, BLogo,gameType, date, time,link, status):
         self.id = id
         self.teamA = teamA
@@ -81,9 +75,29 @@ def parseTwitchs(matchid, url):
     soup = btf(read.text, "lxml")
     details = soup.find('div', class_='panel panel-primary').find_all('a')
     for i in details:
-        vod = Twitchvod(i.get('title'), i.get('href'), matchid)
+        link = i.get('href')
+        if link[0] == '/':
+            link = 'http://hltv.org'+link
+        vod = Twitchvod(i.get('title'), link, matchid)
         session.add(vod)
         session.commit()
+
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(String(10), primary_key=True)
+    password = Column(String(100))
+    def __init__(self,id,password):
+        self.id = id
+        hashed = bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
+        self.password = hashed
+    def is_active(self):
+        return True
+    def get_id(self):
+        return self.id
+    def is_authenticated(self):
+        return True
+    def is_anonymous(self):
+        return False
 
 
 #Base.metadata.create_all(bind=engine)

@@ -13,6 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- Bootstrap Core CSS -->
+    
     <link href="../static/css/main.css" rel="stylesheet">
     <!-- Custom CSS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -42,9 +43,9 @@
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav" style="font-size: 80%">
+      	  <li class=""><a href="{{url_for("today")}}">Today</a></li>
           <li class=""><a href="{{url_for("nip")}}"">Ninja in Pyjamas</a></li>
-          <li class=""><a href="/?">Not yet</a></li>
-              </ul>
+       </ul>
      
     <!--/.nav-collapse -->
   </div>
