@@ -34,10 +34,11 @@ for team in matches:
             session.add(mat)
             session.commit()
             parseTwitchs(id, tohttp(link))
+            checkvod = session.query(session.query(Twitchvod).filter_by(matchid=id).exists()).scalar()
         elif check is True and 'TBA' in TBA.gameType:
             TBA.gameType = e
             session.commit()
-        if checkvod is False:
+        if check is True and checkvod is False:
             parseTwitchs(id, tohttp(link))
     except:
         pass

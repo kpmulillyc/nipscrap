@@ -44,7 +44,7 @@ class match(Base):
     datetime = Column(DateTime)
     link = Column(String(200))
     event = Column(String(100))
-    status = Column(String(20))
+    status = Column(String(100))
     score = Column(String(10))
     twitchvods = relationship('Twitchvod',backref='match', lazy='subquery')
     def __init__(self,id, teamA, ALogo, teamB, BLogo,gameType, date, time,link, status):

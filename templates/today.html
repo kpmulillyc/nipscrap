@@ -26,10 +26,10 @@
                                                 <div class="pull-right" style="border-left:1px solid #D4D4D4;padding-left:5px;padding-right:5px;text-align: center;">
                             <div
                                  style="min-height: 25px;"
-                                 class="resultWinner">{% if current_user.is_authenticated %}{{i.status}}{% endif %}</div>
+                                 class="resultDraw">{% if current_user.is_authenticated and i.status != 'Done'%}{{i.status | safe}}{% endif %}</div>
                             <div
-                                 style="min-height: 25px;"
-                                 class="resultDraw"></div>
+                                 style="min-height: 25px;">{% if current_user.is_authenticated and i.datetime > checknow %}<button class="btn btn-success" type="button" id="{{i.id}}">Record </button>
+                                 {% if i.status == '<font color="orange">Pending</font>' %}<button class="btn btn-danger" type="button" id="del{{i.id}}">Delete </button>{% endif %}{% endif %}</div>
                             <div style="min-height: 25px;color:#777;">{{i.gameType}}</div>
                           </div>
                                                       <div class="pull-right"
@@ -54,6 +54,30 @@
           </div>
 {% endfor %}
 <script>
+	
+$(document).ready(function(){
+$("button").click(function() {
+	if (this.id != 'nav' && this.className == 'btn btn-success'){
+   $.getJSON('/record',{
+            matchid: this.id,
+            success: setTimeout(function(){// wait for 5 secs(2)
+           location.reload(); // then reload the page.(3)
+      }, 3000)
+   
+});
+}
+});
+$("button").click(function() {
+	if (this.id != 'nav' && this.className == 'btn btn-danger'){
+   $.getJSON('/delete',{
+            deid: this.id,
+            success: setTimeout(function(){// wait for 5 secs(2)
+           location.reload(); // then reload the page.(3)
+      }, 3000) 
+});
+}
+});
+
 
    $('*[id^="match"]').each(function(){
       CountDownTimer(document.getElementById(this.id).innerHTML, this.id);
@@ -98,6 +122,7 @@
 
         timer = setInterval(showRemaining, 1000);
     }
+});
 </script>
 {% endblock %}
 
