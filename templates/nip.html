@@ -28,7 +28,7 @@
                                  style="min-height: 25px;"
                                  class="resultDraw">{% if current_user.is_authenticated and i.status != 'Done'%}{{i.status | safe}}{% endif %}</div>
                             <div
-                                 style="min-height: 25px;">{% if current_user.is_authenticated and i.datetime > checknow %}<button class="btn btn-success" type="button" id="{{i.id}}">Record </button>
+                                 style="min-height: 25px;">{% if current_user.is_authenticated and i.datetime > checknow %}{% if i.status != '<font color="orange">Pending</font>' %}<button class="btn btn-success" type="button" id="{{i.id}}">Record </button>{% endif %}
                                  {% if i.status == '<font color="orange">Pending</font>' %}<button class="btn btn-danger" type="button" id="del{{i.id}}">Delete </button>{% endif %}{% endif %}</div>
                             <div style="min-height: 25px;color:#777;">{{i.gameType}}</div>
                           </div>

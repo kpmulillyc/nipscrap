@@ -15,6 +15,9 @@ class APconfig(object):
     SCHEDULER_JOBSTORES = {
         'default': SQLAlchemyJobStore(url=config.dburl)
     }
+    SCHEDULER_EXECUTORS = {
+        'default': {'type': 'processpool', 'max_workers': 5}
+    }
 
 app = Flask(__name__)
 app.secret_key = '32190*!@jkfGsd;p2'
@@ -36,19 +39,19 @@ def bigJob(matchid):
 def recordTwitch(matchid):
     getmatch = db.session.query(match).filter_by(id=matchid).first()
     link = getmatch.link
-    getvod = db.session.query(Twitchvod).filter_by(matchid=id).first()
+    getvod = db.session.query(Twitchvod).filter_by(matchid=matchid).first()
     twitchlink = getvod.link
-    cmd = ["streamlink -o /media/kpmu/data/owncloud/kpmulillyc/files/CS/%sVS%s-%s.mp4 %s best" % (getmatch.teamA,getmatch.teamB,getmatch.event, twitchlink)]
-    subprocess.call(cmd, shell=True)
+    sched.add_job(func=checkLive, trigger='interval', minutes=5, id=(str(matchid) + ' isLive'), args=[link, matchid])
     getmatch.status = '<font color="red">Recording</font>'
     db.session.commit()
-    sched.add_job(func=checkLive,trigger='interval',minutes=5,id=(str(matchid)+' isLive'),args=[link,matchid])
+    cmd = ["streamlink -o '/media/kpmu/data/owncloud/kpmulillyc/files/CS/UN-%s VS %s %s.mp4' %s best" % (getmatch.teamA,getmatch.teamB,getmatch.event, twitchlink)]
+    subprocess.call(cmd, shell=True)
 
 def checkLive(link,matchid):
     dcap = dict(DesiredCapabilities.PHANTOMJS)
     dcap["phantomjs.page.settings.userAgent"] = (
         'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
-    driver = webdriver.PhantomJS(desired_capabilities=dcap, service_log_path='/home/kpmu/phantomjs/ghostdriver.log')
+    driver = webdriver.PhantomJS(desired_capabilities=dcap, service_log_path='/home/kpmu/ghostdriver.log')
     driver.get(link)
     html = driver.page_source
     soup = btf(html, 'lxml')
@@ -56,10 +59,9 @@ def checkLive(link,matchid):
     driver.close()
     if time == 'Match over':
         subprocess.call('pkill streamlink', shell=True)
-        sched.delete_job(str(matchid) + ' record')
         sched.delete_job(str(matchid) + ' isLive')
         getmatch = db.session.query(match).filter_by(id=matchid).first()
-        getmatch.status = v
+        getmatch.status = '<font color="green">Done</font>'
         db.session.commit()
 
 @lm.user_loader
@@ -86,9 +88,9 @@ def today():
     return render_template("today.html", matches=onlytoday,checknow=datetime.now())
 
 @app.route("/past")
-def past():
-    pastt = db.session.query(match).filter(cast(match.datetime, Date) == date.today() - timedelta(days=1)).order_by(
-        match.datetime).all()
+@app.route('/past/<datet>')
+def past(datet = date.today() - timedelta(days=1)):
+    pastt = db.session.query(match).filter(cast(match.datetime,Date)==datet).order_by(match.datetime).all()
     return render_template("past.html", matches=pastt,checknow=datetime.now())
 
 @app.route('/login', methods=['GET', 'POST'])
