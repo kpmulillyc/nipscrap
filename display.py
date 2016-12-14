@@ -16,7 +16,12 @@ class APconfig(object):
         'default': SQLAlchemyJobStore(url=config.dburl)
     }
     SCHEDULER_EXECUTORS = {
-        'default': {'type': 'processpool', 'max_workers': 5}
+        'default': {'type': 'threadpool', 'max_workers': 20}
+    }
+
+    SCHEDULER_JOB_DEFAULTS = {
+        'coalesce': False,
+        'max_instances': 3
     }
 
 app = Flask(__name__)
@@ -44,20 +49,21 @@ def recordTwitch(matchid):
     sched.add_job(func=checkLive, trigger='interval', minutes=5, id=(str(matchid) + ' isLive'), args=[link, matchid])
     getmatch.status = '<font color="red">Recording</font>'
     db.session.commit()
-    cmd = ["streamlink -o '/media/kpmu/data/owncloud/kpmulillyc/files/CS/UN-%s VS %s %s.mp4' %s best" % (getmatch.teamA,getmatch.teamB,getmatch.event, twitchlink)]
+    cmd = ["streamlink -o '/media/kpmu/data/owncloud/kpmulillyc/files/CS/UN %s VS %s %s.mp4' %s best" % (getmatch.teamA,getmatch.teamB,getmatch.event, twitchlink)]
     subprocess.call(cmd, shell=True)
 
 def checkLive(link,matchid):
     dcap = dict(DesiredCapabilities.PHANTOMJS)
     dcap["phantomjs.page.settings.userAgent"] = (
         'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
-    driver = webdriver.PhantomJS(desired_capabilities=dcap, service_log_path='/home/kpmu/ghostdriver.log')
+    driver = webdriver.PhantomJS(executable_path='/home/kpmu/phantomjs/bin/phantomjs',desired_capabilities=dcap, service_log_path='/home/kpmu/ghostdriver.log')
     driver.get(link)
     html = driver.page_source
     soup = btf(html, 'lxml')
     time = soup.find('span', id='time').text
     driver.close()
     if time == 'Match over':
+        driver.quit()
         subprocess.call('pkill streamlink', shell=True)
         sched.delete_job(str(matchid) + ' isLive')
         getmatch = db.session.query(match).filter_by(id=matchid).first()
