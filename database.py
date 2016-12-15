@@ -75,12 +75,30 @@ def parseTwitchs(matchid, url):
     soup = btf(read.text, "lxml")
     details = soup.find('div', class_='panel panel-primary').find_all('a')
     for i in details:
-        link = i.get('href')
-        if link[0] == '/':
-            link = 'http://hltv.org'+link
-        vod = Twitchvod(i.get('title'), link, matchid)
-        session.add(vod)
-        session.commit()
+        if i.get('title') is not None:
+            link = i.get('href')
+            if link[0] == '/':
+                link = 'http://hltv.org'+link
+            vod = Twitchvod(i.get('title'), link, matchid)
+            session.add(vod)
+            session.commit()
+
+def addVod(matchid,url):
+    findl = session.query(Twitchvod).filter_by(matchid=matchid).all()
+    read = requests.get(url, headers=mheaders)
+    soup = btf(read.text, "lxml")
+    details = soup.find('div', class_='panel panel-primary').find_all('a')
+    for i in details:
+        if i.get('title') is not None:
+            if i.get('title') not in [u.title for u in findl]:
+                link = i.get('href')
+                if link[0] == '/':
+                    link = 'http://hltv.org' + link
+                vod = Twitchvod(i.get('title'), link, matchid)
+                session.add(vod)
+                session.commit()
+
+
 
 class User(Base):
     __tablename__ = 'user'

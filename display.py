@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import cast,Date, and_,or_
 import config, bcrypt,subprocess
 from datetime import date, datetime,timedelta
-from database import match, User, Twitchvod
+from database import match, User
 from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_user, logout_user
 from flask_apscheduler import APScheduler
@@ -25,7 +25,7 @@ class APconfig(object):
     }
 
 app = Flask(__name__)
-app.secret_key = '32190*!@jkfGsd;p2'
+app.secret_key = 'jdkljsalkd&#@!Ksdapg'
 app.config.from_object(APconfig())
 sched = APScheduler()
 sched.init_app(app)
@@ -44,26 +44,33 @@ def bigJob(matchid):
 def recordTwitch(matchid):
     getmatch = db.session.query(match).filter_by(id=matchid).first()
     link = getmatch.link
-    getvod = db.session.query(Twitchvod).filter_by(matchid=matchid).first()
-    twitchlink = getvod.link
+    dcap = dict(DesiredCapabilities.PHANTOMJS)
+    dcap["phantomjs.page.settings.userAgent"] = (
+        'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
+    driver = webdriver.PhantomJS(executable_path=config.homepath + '/phantomjs/bin/phantomjs',
+                                 desired_capabilities=dcap, service_log_path=config.homepath + '/ghostdriver.log')
+    driver.get(link)
+    html = driver.page_source
+    driver.quit()
+    soup = btf(html, 'lxml')
+    vodlink = soup.find('div', class_='panel panel-primary').find('a').get('href')
     sched.add_job(func=checkLive, trigger='interval', minutes=5, id=(str(matchid) + ' isLive'), args=[link, matchid])
     getmatch.status = '<font color="red">Recording</font>'
     db.session.commit()
-    cmd = ["streamlink -o '/media/kpmu/data/owncloud/kpmulillyc/files/CS/UN %s VS %s %s.mp4' %s best" % (getmatch.teamA,getmatch.teamB,getmatch.event, twitchlink)]
+    cmd = ["streamlink -o '%s/UN %s VS %s %s.mp4' %s best" % (config.cspath,getmatch.teamA,getmatch.teamB,getmatch.event, vodlink)]
     subprocess.call(cmd, shell=True)
 
 def checkLive(link,matchid):
     dcap = dict(DesiredCapabilities.PHANTOMJS)
     dcap["phantomjs.page.settings.userAgent"] = (
         'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
-    driver = webdriver.PhantomJS(executable_path='/home/kpmu/phantomjs/bin/phantomjs',desired_capabilities=dcap, service_log_path='/home/kpmu/ghostdriver.log')
+    driver = webdriver.PhantomJS(executable_path=config.homepath+'/phantomjs/bin/phantomjs',desired_capabilities=dcap, service_log_path=config.homepath+'/ghostdriver.log')
     driver.get(link)
     html = driver.page_source
     soup = btf(html, 'lxml')
     time = soup.find('span', id='time').text
-    driver.close()
+    driver.quit()
     if time == 'Match over':
-        driver.quit()
         subprocess.call('pkill streamlink', shell=True)
         sched.delete_job(str(matchid) + ' isLive')
         getmatch = db.session.query(match).filter_by(id=matchid).first()
@@ -122,6 +129,17 @@ def delete():
     matchid = matchid.replace('del','')
     sched.delete_job(matchid+' record')
     getmatch=db.session.query(match).filter_by(id=matchid).first()
+    getmatch.status = '-'
+    db.session.commit()
+    return ('', 204)
+
+@app.route('/stop')
+def stop():
+    matchid = request.args.get('stopid')
+    cmd = ['pkill streamlink']
+    subprocess.call(cmd,shell=True)
+    sched.delete_job(matchid + ' isLive')
+    getmatch = db.session.query(match).filter_by(id=matchid).first()
     getmatch.status = '-'
     db.session.commit()
     return ('', 204)

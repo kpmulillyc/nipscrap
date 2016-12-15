@@ -3,7 +3,7 @@ import config
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
 import requests
-from database import match, parseTwitchs,tohttp, Twitchvod
+from database import match, parseTwitchs,tohttp, Twitchvod, addVod
 from sqlalchemy.orm import sessionmaker
 
 engine = create_engine(URL(**config.DATABASE))
@@ -14,6 +14,22 @@ soup = btf(read.text,"lxml")
 matches = soup.find_all("div",class_="matchListRow")
 Session = sessionmaker(bind=engine)
 session = Session()
+
+def updateMatch(matchid):
+    replace = session.query(match).filter_by(id=matchid).first()
+    if a != replace.teamA:
+        replace.teamA = a
+        session.commit()
+    if b != replace.teamB:
+        replace.teamB = b
+        session.commit()
+    if aLogo != replace.ALogo:
+        replace.ALogo = aLogo
+        session.commit()
+    if bLogo != replace.BLogo:
+        replace.BLogo = bLogo
+        session.commit()
+
 for team in matches:
     try:
         a=team.find('div',class_='matchTeam1Cell').text.replace('\n','').replace(' ','')
@@ -40,6 +56,10 @@ for team in matches:
             session.commit()
         if check is True and checkvod is False:
             parseTwitchs(id, tohttp(link))
+        elif check is True and checkvod is True:
+            addVod(id,tohttp(link))
+        if check is True:
+            updateMatch(id)
     except:
         pass
 

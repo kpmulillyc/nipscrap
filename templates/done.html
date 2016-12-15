@@ -28,8 +28,8 @@
                                  style="min-height: 25px;"
                                  class="resultDraw">{% if current_user.is_authenticated and i.status != 'Done'%}{{i.status | safe}}{% endif %}</div>
                             <div
-                                 style="min-height: 25px;">{% if current_user.is_authenticated and i.datetime > checknow %}{% if i.status != '<font color="orange">Pending</font>' %}<button class="btn btn-success" type="button" id="{{i.id}}">Record </button>{% endif %}
-                                 {% if i.status == '<font color="orange">Pending</font>' %}<button class="btn btn-danger" type="button" id="del{{i.id}}">Delete </button>{% endif %}{% endif %}</div>
+                                 style="min-height: 25px;">{% if current_user.is_authenticated and i.datetime > checknow %}{% if i.status == '-' %}<button class="btn btn-success" type="button" id="{{i.id}}">Record </button>{% endif %}
+                                 {% if i.status == '<font color="orange">Pending</font>' %}<button class="btn btn-danger" type="button" id="del{{i.id}}">Delete </button>{% endif %}{% endif %}{% if current_user.is_authenticated and i.status == '<font color="red">Recording</font>' %}<button class="btn btn-danger" type="button" id="{{i.id}}">Stop </button>{% endif %}</div>
                             <div style="min-height: 25px;color:#777;">{{i.gameType}}</div>
                           </div>
                                                       <div class="pull-right"
@@ -77,7 +77,16 @@ $("button").click(function() {
 });
 }
 });
-
+$("button").click(function() {
+	if (this.id != 'nav' && this.className == 'btn btn-danger'){
+   $.getJSON('/stop',{
+            stopid: this.id,
+            success: setTimeout(function(){// wait for 5 secs(2)
+           location.reload(); // then reload the page.(3)
+      }, 3000) 
+});
+}
+});
 
    $('*[id^="match"]').each(function(){
       CountDownTimer(document.getElementById(this.id).innerHTML, this.id);
