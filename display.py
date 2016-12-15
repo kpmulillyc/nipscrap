@@ -67,15 +67,18 @@ def checkLive(link,matchid):
     driver = webdriver.PhantomJS(executable_path=config.homepath+'/phantomjs/bin/phantomjs',desired_capabilities=dcap, service_log_path=config.homepath+'/ghostdriver.log')
     driver.get(link)
     html = driver.page_source
-    soup = btf(html, 'lxml')
-    time = soup.find('span', id='time').text
     driver.quit()
-    if time == 'Match over':
-        subprocess.call('pkill streamlink', shell=True)
-        sched.delete_job(str(matchid) + ' isLive')
-        getmatch = db.session.query(match).filter_by(id=matchid).first()
-        getmatch.status = '<font color="green">Done</font>'
-        db.session.commit()
+    soup = btf(html, 'lxml')
+    try:
+        time = soup.find('span', class_="label-danger label").text
+        if time == 'Match over':
+            subprocess.call('pkill streamlink', shell=True)
+            sched.delete_job(str(matchid) + ' isLive')
+            getmatch = db.session.query(match).filter_by(id=matchid).first()
+            getmatch.status = '<font color="green">Done</font>'
+            db.session.commit()
+    except:
+        pass
 
 @lm.user_loader
 def user_loader(user_id):
