@@ -89,8 +89,8 @@ def addVod(matchid,url):
     soup = btf(read.text, "lxml")
     details = soup.find('div', class_='panel panel-primary').find_all('a')
     for i in details:
-        if i.get('title') is not None:
-            if i.get('title') not in [u.title for u in findl]:
+        if i.get('href') is not None:
+            if i.get('href') not in [u.link for u in findl]:
                 link = i.get('href')
                 if link[0] == '/':
                     link = 'http://hltv.org' + link

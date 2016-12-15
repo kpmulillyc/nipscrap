@@ -3,7 +3,7 @@ import config
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
 import requests
-from database import match, parseTwitchs,tohttp, Twitchvod, addVod
+from database import match, parseTwitchs,tohttp, Twitchvod, addVod, hkt
 from sqlalchemy.orm import sessionmaker
 
 engine = create_engine(URL(**config.DATABASE))
@@ -28,6 +28,9 @@ def updateMatch(matchid):
         session.commit()
     if bLogo != replace.BLogo:
         replace.BLogo = bLogo
+        session.commit()
+    if hkt(date,c) != replace.datetime:
+        replace.datetime = hkt(date,c)
         session.commit()
 
 for team in matches:
