@@ -1,63 +1,55 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import cast,Date, and_,or_
-import config, bcrypt,subprocess
+import config, bcrypt,subprocess,requests,re
 from datetime import date, datetime,timedelta
 from database import match, User
 from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_user, logout_user
-from flask_apscheduler import APScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup as btf
+from apscheduler.executors.pool import ProcessPoolExecutor, ThreadPoolExecutor
+from apscheduler.schedulers.background import BackgroundScheduler
 
-class APconfig(object):
-    SCHEDULER_JOBSTORES = {
-        'default': SQLAlchemyJobStore(url=config.dburl)
-    }
-    SCHEDULER_EXECUTORS = {
-        'default': {'type': 'threadpool', 'max_workers': 20}
-    }
-
-    SCHEDULER_JOB_DEFAULTS = {
-        'coalesce': False,
-        'max_instances': 3
-    }
 
 app = Flask(__name__)
 app.secret_key = 'jdkljsalkd&#@!Ksdapg'
-app.config.from_object(APconfig())
-sched = APScheduler()
-sched.init_app(app)
-sched.start()
 lm = LoginManager()
 app.config.from_object(config.Database)
 db = SQLAlchemy(app)
 lm.init_app(app)
+jobstores = {
+    'default': SQLAlchemyJobStore(url=config.dburl)
+}
+executors = {
+    'default': ThreadPoolExecutor(20),
+    'processpool': ProcessPoolExecutor(5)
+}
+job_defaults = {
+    'coalesce': False,
+    'max_instances': 3
+}
+sched = BackgroundScheduler(jobstores=jobstores, job_defaults=job_defaults,executors=executors)
 
 def bigJob(matchid):
     getmatch = db.session.query(match).filter_by(id=matchid).first()
-    sched.add_job(func=recordTwitch,args=[getmatch.id],trigger='date', run_date=getmatch.datetime,  id=(str(matchid)+' record'))
+    sched.add_job(func=recordTwitch,args=[getmatch.id],trigger='date', run_date=getmatch.datetime,  id=(str(matchid)+' record'),executor='processpool')
     getmatch.status = '<font color="orange">Pending</font>'
     db.session.commit()
 
 def recordTwitch(matchid):
     getmatch = db.session.query(match).filter_by(id=matchid).first()
     link = getmatch.link
-    dcap = dict(DesiredCapabilities.PHANTOMJS)
-    dcap["phantomjs.page.settings.userAgent"] = (
-        'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
-    driver = webdriver.PhantomJS(executable_path=config.homepath + '/phantomjs/bin/phantomjs',
-                                 desired_capabilities=dcap, service_log_path=config.homepath + '/ghostdriver.log')
-    driver.get(link)
-    html = driver.page_source
-    driver.quit()
-    soup = btf(html, 'lxml')
-    vodlink = soup.find('div', class_='panel panel-primary').find('a').get('href')
-    sched.add_job(func=checkLive, trigger='interval', minutes=5, id=(str(matchid) + ' isLive'), args=[link, matchid])
+    mheaders = {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}
+    read = requests.get(link, headers=mheaders)
+    soup = btf(read.text, "lxml")
+    vodlink = soup.find('div', class_='panel-heading', string=re.compile('Streams')).find_next('a')
+    sched.add_job(func=checkLive, trigger='interval', minutes=5, id=(str(matchid) + ' isLive'), args=[link, matchid],replace_existing=True,executor='default')
     getmatch.status = '<font color="red">Recording</font>'
     db.session.commit()
-    cmd = ["streamlink -o '%s/UN %s VS %s %s.mp4' %s best" % (config.cspath,getmatch.teamA,getmatch.teamB,getmatch.event, vodlink)]
+    cmd = ["streamlink -o '%s/UN %s VS %s %s.mp4' %s best" % (config.cspath,getmatch.teamA,getmatch.teamB,
+                                                          getmatch.event, vodlink)]
     subprocess.call(cmd, shell=True)
 
 def checkLive(link,matchid):
@@ -73,12 +65,15 @@ def checkLive(link,matchid):
         time = soup.find('span', class_="label-danger label").text
         if time == 'Match over':
             subprocess.call('pkill streamlink', shell=True)
-            sched.delete_job(str(matchid) + ' isLive')
+            sched.remove_job(str(matchid) + ' isLive')
             getmatch = db.session.query(match).filter_by(id=matchid).first()
             getmatch.status = '<font color="green">Done</font>'
             db.session.commit()
     except:
         pass
+
+
+sched.start()
 
 @lm.user_loader
 def user_loader(user_id):
@@ -130,7 +125,7 @@ def record():
 def delete():
     matchid = request.args.get('deid')
     matchid = matchid.replace('del','')
-    sched.delete_job(matchid+' record')
+    sched.remove_job(matchid+' record')
     getmatch=db.session.query(match).filter_by(id=matchid).first()
     getmatch.status = '-'
     db.session.commit()
@@ -139,9 +134,10 @@ def delete():
 @app.route('/stop')
 def stop():
     matchid = request.args.get('stopid')
+    matchid = matchid.replace('del','')
     cmd = ['pkill streamlink']
     subprocess.call(cmd,shell=True)
-    sched.delete_job(matchid + ' isLive')
+    sched.remove_job(matchid + ' isLive')
     getmatch = db.session.query(match).filter_by(id=matchid).first()
     getmatch.status = '-'
     db.session.commit()
