@@ -1,0 +1,242 @@
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:44] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:44] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:47] "POST /login HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:47] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:47] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:48] "GET /today HTTP/1.1" 200 -
+INFO:apscheduler.scheduler:Added job "recordTwitch" to job store "default"
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-17 20:49:00+08:00 (in 9.376823 seconds)
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:50] "GET /record?matchid=2307190&success=9 HTTP/1.1" 204 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:53] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:48:53] "GET /static/css/main.css HTTP/1.1" 304 -
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "recordTwitch (trigger: date[2016-12-17 20:49:00 HKT], next run at: 2016-12-17 20:49:00 HKT)" (scheduled at 2016-12-17 20:49:00+08:00)
+INFO:apscheduler.scheduler:Removed job 2307190 record
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://hltv.org:80 "GET /match/2307190-clg-renegades-eleague-major-main-qualifier HTTP/1.1" 301 None
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): www.hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://www.hltv.org:80 "GET /match/2307190-clg-renegades-eleague-major-main-qualifier HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:23] "GET /delete?deid=del2307190&success=9 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:23] "GET /stop?stopid=del2307190&success=10 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:23] "GET /delete?deid=del2307190&success=11 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:23] "GET /stop?stopid=del2307190&success=12 HTTP/1.1" 500 -
+INFO:apscheduler.executors.default:Job "recordTwitch (trigger: date[2016-12-17 20:49:00 HKT], next run at: 2016-12-17 20:49:00 HKT)" executed successfully
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:26] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:26] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Dec/2016 20:49:26] "GET /static/css/main.css HTTP/1.1" 304 -
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:20:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:20:53] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:20:56] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:20:56] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:10] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:15] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:15] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:18] "POST /login HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:20] "GET /today HTTP/1.1" 200 -
+INFO:apscheduler.scheduler:Added job "recordTwitch" to job store "default"
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-18 21:22:00+08:00 (in 38.251595 seconds)
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:21] "GET /record?matchid=2307144&success=11 HTTP/1.1" 204 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:24] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:21:24] "GET /static/css/main.css HTTP/1.1" 304 -
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "recordTwitch (trigger: date[2016-12-18 21:22:00 HKT], next run at: 2016-12-18 21:22:00 HKT)" (scheduled at 2016-12-18 21:22:00+08:00)
+INFO:apscheduler.scheduler:Removed job 2307144 record
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://hltv.org:80 "GET /match/2307144-dignitas-spirit-eleague-major-main-qualifier HTTP/1.1" 301 None
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): www.hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://www.hltv.org:80 "GET /match/2307144-dignitas-spirit-eleague-major-main-qualifier HTTP/1.1" 200 None
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:22:54] "GET /pending HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:22:55] "GET /delete?deid=2307144&success=7 HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:22:55] "GET /stop?stopid=2307144&success=8 HTTP/1.1" 500 -
+INFO:apscheduler.executors.default:Job "recordTwitch (trigger: date[2016-12-18 21:22:00 HKT], next run at: 2016-12-18 21:22:00 HKT)" executed successfully
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:22:58] "GET /pending HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:22:58] "GET /pending HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:22:58] "GET /static/css/main.css HTTP/1.1" 304 -
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:33:08] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:33:10] "GET /today HTTP/1.1" 200 -
+INFO:apscheduler.scheduler:Added job "recordTwitch" to job store "default"
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-18 21:34:00+08:00 (in 48.061441 seconds)
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:33:11] "GET /record?matchid=2307144&success=12 HTTP/1.1" 204 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:33:14] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:33:14] "GET /static/css/main.css HTTP/1.1" 304 -
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "recordTwitch (trigger: date[2016-12-18 21:34:00 HKT], next run at: 2016-12-18 21:34:00 HKT)" (scheduled at 2016-12-18 21:34:00+08:00)
+INFO:apscheduler.scheduler:Removed job 2307144 record
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://hltv.org:80 "GET /match/2307144-dignitas-spirit-eleague-major-main-qualifier HTTP/1.1" 301 None
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): www.hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://www.hltv.org:80 "GET /match/2307144-dignitas-spirit-eleague-major-main-qualifier HTTP/1.1" 200 None
+INFO:apscheduler.executors.default:Job "recordTwitch (trigger: date[2016-12-18 21:34:00 HKT], next run at: 2016-12-18 21:34:00 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:16] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:17] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:20] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:20] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:21] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:21] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:28] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:28] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:30] "POST /login HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:32] "GET /today HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:36] "GET /nip HTTP/1.1" 200 -
+INFO:apscheduler.scheduler:Added job "recordTwitch" to job store "default"
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:15:00+08:00 (in 15862.800901 seconds)
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:37] "GET /record?matchid=2307209&success=7 HTTP/1.1" 204 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:40] "GET /nip HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Dec/2016 21:50:40] "GET /static/css/main.css HTTP/1.1" 304 -
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "recordTwitch (trigger: date[2016-12-19 02:15:00 HKT], next run at: 2016-12-19 02:15:00 HKT)" (scheduled at 2016-12-19 02:15:00+08:00)
+INFO:apscheduler.scheduler:Removed job 2307209 record
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://hltv.org:80 "GET /match/2307209-nip-vega-squadron-eleague-major-main-qualifier HTTP/1.1" 301 None
+DEBUG:requests.packages.urllib3.connectionpool:Starting new HTTP connection (1): www.hltv.org
+DEBUG:requests.packages.urllib3.connectionpool:http://www.hltv.org:80 "GET /match/2307209-nip-vega-squadron-eleague-major-main-qualifier HTTP/1.1" 200 None
+INFO:apscheduler.scheduler:Added job "checkLive" to job store "default"
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:20:01.821980+08:00 (in 299.995492 seconds)
+INFO:apscheduler.executors.default:Job "recordTwitch (trigger: date[2016-12-19 02:15:00 HKT], next run at: 2016-12-19 02:15:00 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:20:01 HKT)" (scheduled at 2016-12-19 02:20:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:25:01.821980+08:00 (in 299.996994 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:38793/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:38793/wd/hub/session/97f11920-c54e-11e6-9cdd-05ea5320be07/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "97f11920-c54e-11e6-9cdd-05ea5320be07"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:38793/wd/hub/session/97f11920-c54e-11e6-9cdd-05ea5320be07/source {"sessionId": "97f11920-c54e-11e6-9cdd-05ea5320be07"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:38793/wd/hub/session/97f11920-c54e-11e6-9cdd-05ea5320be07 {"sessionId": "97f11920-c54e-11e6-9cdd-05ea5320be07"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:25:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:25:01 HKT)" (scheduled at 2016-12-19 02:25:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:30:01.821980+08:00 (in 299.976005 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:50005/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:50005/wd/hub/session/4ac28890-c54f-11e6-8427-f3638ce2b1d1/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "4ac28890-c54f-11e6-8427-f3638ce2b1d1"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:50005/wd/hub/session/4ac28890-c54f-11e6-8427-f3638ce2b1d1/source {"sessionId": "4ac28890-c54f-11e6-8427-f3638ce2b1d1"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:50005/wd/hub/session/4ac28890-c54f-11e6-8427-f3638ce2b1d1 {"sessionId": "4ac28890-c54f-11e6-8427-f3638ce2b1d1"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:30:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:30:01 HKT)" (scheduled at 2016-12-19 02:30:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:35:01.821980+08:00 (in 299.980614 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:45010/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:45010/wd/hub/session/fd90eac0-c54f-11e6-a141-3b64591e558a/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "fd90eac0-c54f-11e6-a141-3b64591e558a"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:45010/wd/hub/session/fd90eac0-c54f-11e6-a141-3b64591e558a/source {"sessionId": "fd90eac0-c54f-11e6-a141-3b64591e558a"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:45010/wd/hub/session/fd90eac0-c54f-11e6-a141-3b64591e558a {"sessionId": "fd90eac0-c54f-11e6-a141-3b64591e558a"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:35:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:35:01 HKT)" (scheduled at 2016-12-19 02:35:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:40:01.821980+08:00 (in 299.987126 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:51137/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:51137/wd/hub/session/b062cf60-c550-11e6-85f9-2fe5c04428e5/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "b062cf60-c550-11e6-85f9-2fe5c04428e5"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:51137/wd/hub/session/b062cf60-c550-11e6-85f9-2fe5c04428e5/source {"sessionId": "b062cf60-c550-11e6-85f9-2fe5c04428e5"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:51137/wd/hub/session/b062cf60-c550-11e6-85f9-2fe5c04428e5 {"sessionId": "b062cf60-c550-11e6-85f9-2fe5c04428e5"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:40:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:45:01 HKT)" (scheduled at 2016-12-19 02:40:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:45:01.821980+08:00 (in 299.979507 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:42602/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:42602/wd/hub/session/6332b830-c551-11e6-ba6c-5f4504db37ed/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "6332b830-c551-11e6-ba6c-5f4504db37ed"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:42602/wd/hub/session/6332b830-c551-11e6-ba6c-5f4504db37ed/source {"sessionId": "6332b830-c551-11e6-ba6c-5f4504db37ed"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:42602/wd/hub/session/6332b830-c551-11e6-ba6c-5f4504db37ed {"sessionId": "6332b830-c551-11e6-ba6c-5f4504db37ed"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:45:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:50:01 HKT)" (scheduled at 2016-12-19 02:45:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:50:01.821980+08:00 (in 299.981660 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:47087/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:47087/wd/hub/session/160475c0-c552-11e6-905f-eb6ebff60ce9/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "160475c0-c552-11e6-905f-eb6ebff60ce9"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:47087/wd/hub/session/160475c0-c552-11e6-905f-eb6ebff60ce9/source {"sessionId": "160475c0-c552-11e6-905f-eb6ebff60ce9"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:47087/wd/hub/session/160475c0-c552-11e6-905f-eb6ebff60ce9 {"sessionId": "160475c0-c552-11e6-905f-eb6ebff60ce9"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:50:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:55:01 HKT)" (scheduled at 2016-12-19 02:50:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 02:55:01.821980+08:00 (in 299.978755 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:32935/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:32935/wd/hub/session/c8d41070-c552-11e6-9698-3b63004d74a6/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "c8d41070-c552-11e6-9698-3b63004d74a6"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:32935/wd/hub/session/c8d41070-c552-11e6-9698-3b63004d74a6/source {"sessionId": "c8d41070-c552-11e6-9698-3b63004d74a6"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:32935/wd/hub/session/c8d41070-c552-11e6-9698-3b63004d74a6 {"sessionId": "c8d41070-c552-11e6-9698-3b63004d74a6"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 02:55:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 03:00:01 HKT)" (scheduled at 2016-12-19 02:55:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 03:00:01.821980+08:00 (in 299.981613 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:55914/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:55914/wd/hub/session/7ba531c0-c553-11e6-b85c-f93b8970d2ca/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "7ba531c0-c553-11e6-b85c-f93b8970d2ca"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:55914/wd/hub/session/7ba531c0-c553-11e6-b85c-f93b8970d2ca/source {"sessionId": "7ba531c0-c553-11e6-b85c-f93b8970d2ca"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:55914/wd/hub/session/7ba531c0-c553-11e6-b85c-f93b8970d2ca {"sessionId": "7ba531c0-c553-11e6-b85c-f93b8970d2ca"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 03:00:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 03:05:01 HKT)" (scheduled at 2016-12-19 03:00:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 03:05:01.821980+08:00 (in 299.978964 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:41050/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:41050/wd/hub/session/2e7541a0-c554-11e6-b003-a3555dd9f715/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "2e7541a0-c554-11e6-b003-a3555dd9f715"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:41050/wd/hub/session/2e7541a0-c554-11e6-b003-a3555dd9f715/source {"sessionId": "2e7541a0-c554-11e6-b003-a3555dd9f715"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:41050/wd/hub/session/2e7541a0-c554-11e6-b003-a3555dd9f715 {"sessionId": "2e7541a0-c554-11e6-b003-a3555dd9f715"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 03:05:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+INFO:apscheduler.executors.default:Running job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 03:10:01 HKT)" (scheduled at 2016-12-19 03:05:01.821984+08:00)
+DEBUG:apscheduler.scheduler:Next wakeup is due at 2016-12-19 03:10:01.821980+08:00 (in 299.976657 seconds)
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:33633/wd/hub/session {"desiredCapabilities": {"javascriptEnabled": true, "browserName": "phantomjs", "platform": "ANY", "phantomjs.page.settings.userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30", "version": ""}, "requiredCapabilities": {}}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://127.0.0.1:33633/wd/hub/session/e1468a00-c554-11e6-a3e0-e14bdbcd28f3/url {"url": "http://hltv.org/match/2307209-nip-vega-squadron-eleague-major-main-qualifier", "sessionId": "e1468a00-c554-11e6-a3e0-e14bdbcd28f3"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:GET http://127.0.0.1:33633/wd/hub/session/e1468a00-c554-11e6-a3e0-e14bdbcd28f3/source {"sessionId": "e1468a00-c554-11e6-a3e0-e14bdbcd28f3"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:DELETE http://127.0.0.1:33633/wd/hub/session/e1468a00-c554-11e6-a3e0-e14bdbcd28f3 {"sessionId": "e1468a00-c554-11e6-a3e0-e14bdbcd28f3"}
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+INFO:apscheduler.scheduler:Removed job 2307209 isLive
+INFO:apscheduler.executors.default:Job "checkLive (trigger: interval[0:05:00], next run at: 2016-12-19 03:10:01 HKT)" executed successfully
+DEBUG:apscheduler.scheduler:Looking for jobs to run
+DEBUG:apscheduler.scheduler:No jobs; waiting until a job is added

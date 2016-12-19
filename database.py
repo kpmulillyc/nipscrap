@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup as btf
 from sqlalchemy.orm import sessionmaker,relationship
 import requests, bcrypt
 
+
 mheaders = {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'}
 engine = create_engine(URL(**config.DATABASE))
 Base = declarative_base()
@@ -108,14 +109,14 @@ class User(Base):
         self.id = id
         hashed = bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
         self.password = hashed
-    def is_active(self):
-        return True
-    def get_id(self):
-        return self.id
     def is_authenticated(self):
+        return True
+    def is_active(self):
         return True
     def is_anonymous(self):
         return False
+    def get_id(self):
+        return self.id
 
 if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)
